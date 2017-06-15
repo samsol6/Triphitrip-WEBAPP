@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   #get 'admin_pannel/home'
   root 'admin_pannel#home'
 
