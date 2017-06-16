@@ -1,4 +1,4 @@
-class Api::v1:SessionsController < Api::ApiController
+class Api::v1::SessionsController < Api::ApiController
   
   respond_to :json
   skip_before_action :verify_authenticity_token
