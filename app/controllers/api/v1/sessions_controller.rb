@@ -2,11 +2,12 @@ class Api::V1::SessionsController < Api::ApiController
   
   respond_to :json
   skip_before_action :verify_authenticity_token
-  before_filter :ensure_params_exist, only: [:create]
+  before_action :ensure_params_exist, only: [:create]
 
 
 
   def create
+  	
   	resource = User.find_for_database_authentication(email: params[:user][:email])
   		return invalid_login_attempt unless resource
   		if resource.valid_password?(params[:user][:password])
@@ -36,7 +37,7 @@ class Api::V1::SessionsController < Api::ApiController
   end
 
   def invalid_login_attempt
-  	warden.custom_failure!
+  	#warden.custom_failure!
   		render json: {status: "failed", message: "Error with your Email or Password"}
   end
 
