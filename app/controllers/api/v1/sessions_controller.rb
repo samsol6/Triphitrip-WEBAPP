@@ -8,14 +8,14 @@ class Api::V1::SessionsController < Api::ApiController
   skip_before_action :verify_authenticity_token
   before_action :ensure_params_exist, only: [:create]
 
-
+# changed packet trasformation from :user => {} to ke valuepair
 
   def create
 
-  	resource = User.find_for_database_authentication(email: params[:user][:email])
+  	resource = User.find_for_database_authentication(email: params[:email])
   	return invalid_login_attempt unless resource
 
-  		if resource.valid_password?(params[:user][:password])
+  		if resource.valid_password?(params[:password])
   			sign_in("user", resource)
   			render json: {status: "successful", user:{id: resource.id,
   				email: resource.email,
@@ -40,7 +40,7 @@ class Api::V1::SessionsController < Api::ApiController
   protected
 
   def ensure_params_exist
-  	return unless params[:user].blank?
+  	return unless params[:email].blank? || params[:password].blank?
   		render json: {status: "failed", message: "Missing User Parameters"}
   end
 
