@@ -8,7 +8,7 @@ class Api::V1::SessionsController < Api::ApiController
   skip_before_action :verify_authenticity_token
   before_action :ensure_params_exist, only: [:create]
 
-# changed packet trasformation from :user => {} to ke valuepair
+# changed packet trasformation from params[:user][:email] to params[:email]
 
   def create
 

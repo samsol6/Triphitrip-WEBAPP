@@ -4,10 +4,10 @@ respond_to :json
 skip_before_action :verify_authenticity_token
 before_action :check_user, only: [:create]
 
-
+# changed packet trasformation from params[:user][:email] to params[:email]
 
 	def create    
-		if params[:user][:email].blank? || params[:user][:password].blank? || params[:user][:password_confirmation].blank?      
+		if params[:email].blank? || params[:password].blank? || params[:password_confirmation].blank?      
 			render json: {status: "failed", message: "Missing Parameters"}    
 		else      
 			# if request.headers["Authorization"].blank?
@@ -23,8 +23,8 @@ before_action :check_user, only: [:create]
 			#         render json: {status: "failed", user: user.errors}        
 			#     end      
 			# else   
-			    if  User.exists?(email: params[:user][:email])
-			    	user = User.find_by(email: params[:user][:email])
+			    if  User.exists?(email: params[:email])
+			    	user = User.find_by(email: params[:email])
 			    	user.update(user_params)
 			    	render json: {status: "successful", 
 			    					user: { id: user.id, 
@@ -58,11 +58,12 @@ before_action :check_user, only: [:create]
 	private  
 
 	def user_params    
-		params.require(:user).permit(:email,:password,:password_confirmation)  
+		# params.require(:user).permit(:email,:password,:password_confirmation)  
+		params.permit(:email,:password,:password_confirmation)  
 	end  
 
 	def check_user
-		if User.exists?(email: params[:user][:email])
+		if User.exists?(email: params[:email])
 			render  json: {status: "failed", message: "User Already Exists"}    
 		end
 	end  
