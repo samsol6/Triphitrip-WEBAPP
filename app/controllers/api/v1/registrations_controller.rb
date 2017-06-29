@@ -4,6 +4,8 @@ respond_to :json
 skip_before_action :verify_authenticity_token
 before_action :check_user, only: [:create]
 
+
+
 # changed packet trasformation from params[:user][:email] to params[:email]
 
 	def create    
@@ -67,6 +69,7 @@ before_action :check_user, only: [:create]
 			render  json: {status: "failed", message: "User Already Exists"}    
 		end
 	end  
+
 
 	# def set_image_name 
 	#    random_number = SecureRandom.base64  
