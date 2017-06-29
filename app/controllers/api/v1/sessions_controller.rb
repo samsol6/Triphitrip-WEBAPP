@@ -21,7 +21,7 @@ class Api::V1::SessionsController < Api::ApiController
   				email: resource.email,
           role: resource.role,
           first_name: resource.first_name,
-          last_name: resource.last_name
+          last_name: resource.last_name,
   				# authentication_token: resource.authentication_token,
   				created_at: resource.created_at,
   				updated_at: resource.updated_at  }}
