@@ -27,6 +27,7 @@ skip_before_action :verify_authenticity_token
 		@data.email=params[:email]
 		RezlistMailer.sample_email(@data).deliver
 		# JobMailer.send_csv(email, csv).deliver
+		render json: {status: "successful", user:{id: @data.id, email: @data.email }}
 	end
 
 	def send_csv(email, csv)
