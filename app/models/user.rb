@@ -4,11 +4,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  	before_save :default_values
-	# after_initialize :default_values
+  before_save :default_values
 
 	def default_values
     	self.role = role.presence || 'user'
-    	# self.role ||= "user"
-  	end
+  end
+
+  def self.to_csv
+    attributes = %w{first_name last_name email contact}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        # csv << attributes.map{ |attr| user.send(attr) }
+        csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+
 end

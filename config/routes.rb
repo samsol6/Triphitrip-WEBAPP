@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   			post 'sign_up_with_fb' => 'registraions#sign_up_with_fb'
   			delete 'signout' => 'sessions#destroy'
   		end
+
+      get 'export' => 'exports#index'
   	end
     #get 'api/current_user'
   end
