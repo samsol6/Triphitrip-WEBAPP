@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   			delete 'signout' => 'sessions#destroy'
   		end
 
-      get 'export' => 'exports#index'
+      post 'export' => 'exports#index'
   	end
     #get 'api/current_user'
   end
