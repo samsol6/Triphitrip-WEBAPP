@@ -63,11 +63,11 @@ skip_before_action :verify_authenticity_token
 		file.rewind
 
 		cnt = Base64.encode64(File.open(file.path, "rb").read)
-		# if cnt.include?("\n")
-		# 	puts "========************************==========="
-		# 	cnt ["\n"] = "" 
-		# 	puts "========************************==========="
-		# end
+		if cnt.include?("\n")
+			cnt.delete!("\n")
+			puts cnt
+			puts "========************************==========="
+		end
 	
 		# using SendGrid's Ruby Library
 		# https://github.com/sendgrid/sendgrid-ruby
