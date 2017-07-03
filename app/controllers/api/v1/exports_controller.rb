@@ -64,7 +64,9 @@ skip_before_action :verify_authenticity_token
 
 		cnt = Base64.encode64(File.open(file.path, "rb").read)
 		if cnt.include?("\n")
+			puts "========************************==========="
 			cnt ["\n"] = "" 
+			puts "========************************==========="
 		end
 	
 		# using SendGrid's Ruby Library
@@ -93,6 +95,8 @@ skip_before_action :verify_authenticity_token
 		puts response.status_code
 		puts response.body
 		puts response.headers
+
+		file.unlink
 	end
 
 
