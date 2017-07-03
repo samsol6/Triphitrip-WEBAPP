@@ -90,9 +90,9 @@ skip_before_action :verify_authenticity_token
 
 		sg = SendGrid::API.new(api_key: SENDGRID_API_KEY)
 		response = sg.client.mail._('send').post(request_body: mail.to_json)
-		# puts response.status_code
-		# puts response.body
-		# puts response.headers
+		puts response.status_code
+		puts response.body
+		puts response.headers
 	end
 
 
