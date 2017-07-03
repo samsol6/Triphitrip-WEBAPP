@@ -104,4 +104,6 @@ Rails.application.configure do
 #   :authentication => :plain,
 # }
 
+SENDGRID_API_KEY = Rails.application.secrets.SENDGRID_API_KEY
+
 end

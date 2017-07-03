@@ -76,4 +76,7 @@ Rails.application.configure do
 #   :authentication => :plain,
 #   :enable_starttls_auto => true
 # }
+
+# SENDGRID_API_KEY = ENV['SENDGRID_API_KEY']
+SENDGRID_API_KEY = Rails.application.secrets.SENDGRID_API_KEY
 end
