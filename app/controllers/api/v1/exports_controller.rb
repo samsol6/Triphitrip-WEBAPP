@@ -84,9 +84,9 @@ skip_before_action :verify_authenticity_token
 		attachment.content_id = 'Users Export'
 		mail.add_attachment(attachment)
 
-		# puts "==================================================================="
-		# puts mail.to_json
-		# puts "==================================================================="
+		puts "==================================================================="
+		puts mail.to_json
+		puts "==================================================================="
 
 		sg = SendGrid::API.new(api_key: SENDGRID_API_KEY)
 		response = sg.client.mail._('send').post(request_body: mail.to_json)
