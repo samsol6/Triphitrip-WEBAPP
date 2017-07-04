@@ -75,7 +75,7 @@ skip_before_action :verify_authenticity_token
 		from = Email.new(email: 'Admin@rezlist.com')
 		to = Email.new(email: params[:email])
 		subject = 'CSV data for TopProducer'
-		content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+		content = Content.new(type: 'text/plain', value: 'Please find the attachment for records')
 		mail = Mail.new(from, subject, to, content)
 
 		attachment = Attachment.new
@@ -93,8 +93,13 @@ skip_before_action :verify_authenticity_token
 		sg = SendGrid::API.new(api_key: SENDGRID_API_KEY)
 		response = sg.client.mail._('send').post(request_body: mail.to_json)
 		puts response.status_code
-		puts response.body
-		puts response.headers
+		# puts response.body
+		# puts response.headers
+		if response.status_code == '202'
+			render json: {result:"Successful"}
+		else 
+			render json: {result: "UnSuccessful"}
+		end
 
 		file.unlink
 	end
