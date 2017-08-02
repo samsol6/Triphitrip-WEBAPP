@@ -57,6 +57,8 @@ end
 
 # Devise for Authentication
 gem 'devise'
+# For token authentication
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
 # Mailgun for API based emails
 gem 'mailgun-ruby', '~>1.1.6'

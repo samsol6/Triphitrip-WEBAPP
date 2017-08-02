@@ -19,6 +19,7 @@ class Api::V1::SessionsController < Api::ApiController
   			sign_in("user", resource)
   			render json: {status: "successful", user:{id: resource.id,
   				email: resource.email,
+          authentication_token: resource.authentication_token,
           role: resource.role,
           first_name: resource.first_name,
           last_name: resource.last_name,
